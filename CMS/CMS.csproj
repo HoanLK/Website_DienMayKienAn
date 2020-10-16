@@ -6934,6 +6934,7 @@
     <Content Include="fonts\themify\themify.eot" />
     <Content Include="fonts\themify\themify.ttf" />
     <Content Include="fonts\themify\themify.woff" />
+    <Content Include="App_Data\StoreCMS.bak" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
