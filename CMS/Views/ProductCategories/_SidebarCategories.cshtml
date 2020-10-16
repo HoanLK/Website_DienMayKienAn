@@ -1,0 +1,20 @@
+﻿@model ICollection<CMS.Models.ViewModels.ProductCategoryLessViewModel>
+
+<div class="sidebar">
+    <!-- Single Sidebar Widget -->
+    <div class="sidebar__widget gray-bg">
+        <div class="sidebar__box">
+            <h5 class="sidebar__title">@Html.Raw("Danh mục")</h5>
+        </div>
+        <ul class="sidebar__catagories list-space--small">
+            @foreach (var category in Model)
+            {
+                <li>
+                    <a class="link--gray" href="/product-categories/@category.Slug-@category.Id" title="@Html.Raw(category.Name)">
+                        <i class="@category.Icon" style="width: 20px; text-align:center; margin-right: 5px;"></i> @Html.Raw(category.Name)
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,225 @@
+﻿import templateUrl from "./banner-datagrid.component.html";
+
+export default class BannerDatagridController {
+  constructor($scope, CommonService, DevextremeService, BannerService) {
+    "ngInject";
+
+    this.$scope = $scope;
+    this.commonService = CommonService;
+    this.devextremeService = DevextremeService;
+    this.bannerService = BannerService;
+
+    // VAR
+    this.datagrid = {};
+    this.gridInstance = {};
+    this.delete = {
+      id: null,
+      visible: false,
+    };
+
+    this.$scope.showFilter = true;
+
+    // Init Datagrid
+    this.datagrid = angular.extend(this.devextremeService.getDefaultGrid(), {
+      onInitialized: (e) => {
+        this.gridInstance = e.component;
+      },
+      bindingOptions: {
+        "filterRow.visible": "showFilter",
+      },
+      dataSource: this.bannerService.gets([
+        "Id",
+        "Image",
+        "MainTitle",
+        "Published",
+        "SortOrder",
+        "CreateTime",
+      ]),
+      columns: [
+        {
+          // 0
+          dataType: "string",
+          cellTemplate: "functionBtnTemplate",
+          showInColumnChooser: false,
+          caption: "",
+          allowEditing: false,
+          allowExporting: false,
+          allowFiltering: false,
+          allowGrouping: false,
+          allowHeaderFiltering: false,
+          allowHiding: false,
+          allowReordering: false,
+          allowResizing: false,
+          allowSearch: false,
+          allowSorting: false,
+          width: 80,
+        },
+        {
+          //1
+          caption: "ID",
+          dataField: "Id",
+          dataType: "number",
+          visible: false,
+          width: 60,
+        },
+        {
+          //2
+          caption: "HÌNH ẢNH",
+          dataField: "Image",
+          dataType: "string",
+          cellTemplate: "imageCellTemplate",
+          minWidth: 200,
+        },
+        {
+          //3
+          cssClass: "font-weight-bold",
+          caption: "TIÊU ĐỀ",
+          dataField: "MainTitle",
+          dataType: "string",
+          width: 150,
+        },
+        {
+          //4
+          caption: "XUẤT BẢN",
+          dataField: "Published",
+          dataType: "boolean",
+          cellTemplate: "publishedCellTemplate",
+          trueText: "Xuất bản",
+          falseText: "Chưa xuất bản",
+          width: 100,
+        },
+        {
+          //5
+          caption: "THỨ TỰ",
+          dataField: "SortOrder",
+          dataType: "number",
+          sortOrder: "asc",
+          width: 100,
+        },
+        {
+          //6
+          alignment: "left",
+          caption: "THỜI GIAN",
+          dataField: "CreateTime",
+          dataType: "date",
+          format: "dd/MM/yyyy",
+          customizeText: function(cellInfo) {
+            return cellInfo.valueText;
+          },
+          width: 100,
+        },
+      ],
+      summary: {
+        texts: {
+          count: "{0}",
+        },
+        totalItems: [
+          {
+            column: "MainTitle",
+            summaryType: "count",
+          },
+        ],
+      },
+      rowFilter: {
+        visible: this.showFilter,
+      },
+      onToolbarPreparing: (e) => {
+        e.toolbarOptions.items.unshift(
+          // RIGHT
+          {
+            // CREATE
+            location: "before",
+            widget: "dxButton",
+            options: {
+              hint: "Thêm banner",
+              icon: "add",
+              text: "Thêm banner",
+              type: "success",
+              onClick: () => {
+                this.onCreate();
+              },
+            },
+            locateInMenu: "auto",
+          },
+          {
+            // FILTER
+            location: "after",
+            widget: "dxButton",
+            options: {
+              hint: "Lọc dữ liệu",
+              icon: "filter",
+              type: this.$scope.showFilter ? "success" : "normal",
+              onClick: () => {
+                setTimeout(() => {
+                  this.$scope.showFilter = !this.$scope.showFilter;
+                  this.gridInstance.repaint();
+                }, 0);
+              },
+            },
+            locateInMenu: "auto",
+          },
+          {
+            // REFRESH
+            location: "after",
+            widget: "dxButton",
+            options: {
+              hint: "Refresh",
+              icon: "refresh",
+              onClick: () => {
+                this.gridInstance.getDataSource().reload();
+              },
+            },
+            locateInMenu: "auto",
+          }
+        );
+      },
+      onRowDblClick: (e) => {
+        this.onEdit(e.data.Id);
+      },
+    });
+  }
+
+  // INIT
+  $onInit() {}
+
+  // CREATE
+  onCreate() {
+    this.bannerService.redirectCreate();
+  }
+
+  // EDIT
+  onEdit(id) {
+    this.bannerService.redirectEdit(id);
+  }
+
+  // DELETE
+  onDelete(id) {
+    this.delete.id = id;
+    this.delete.visible = true;
+  }
+  onDeleted() {
+    this.delete = {
+      id: null,
+      visible: false,
+    };
+    this.gridInstance.getDataSource().reload();
+  }
+  onClosedDelete() {
+    this.delete = {
+      id: null,
+      visible: false,
+    };
+  }
+}
+
+BannerDatagridController.$inject = [
+  "$scope",
+  "CommonService",
+  "DevextremeService",
+  "BannerService",
+];
+
+export const BannerDatagridComponent = {
+  template: templateUrl,
+  controller: BannerDatagridController,
+};

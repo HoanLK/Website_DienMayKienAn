@@ -1,0 +1,78 @@
+﻿<!-- Main -->
+<div class="datagrid-page">
+  <div dx-data-grid="$ctrl.datagrid" dx-item-alias="item">
+    <!-- Template Funtion Button -->
+    <div data-options="dxTemplate:{ name:'functionBtnTemplate' }">
+      <!-- Edit -->
+      <button
+        type="button"
+        class="btn btn-sm btn-circle btn-alt-warning mr-5 mb-5"
+        title="Sửa nhóm"
+        ng-click="$ctrl.onEdit(item.data.Id)"
+      >
+        <i class="fa fa-edit"></i>
+      </button>
+      <!-- Delete -->
+      <button
+        type="button"
+        class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5"
+        title="Xóa nhóm"
+        ng-click="$ctrl.onDelete(item.data.Id)"
+      >
+        <i class="fa fa-trash"></i>
+      </button>
+    </div>
+    <!-- Template Published -->
+    <div data-options="dxTemplate:{ name:'publishedCellTemplate' }">
+      <i
+        class="mr-5 mb-5 text-success fa fa-check"
+        title="Đã xuất bản"
+        ng-if="item.value"
+      ></i>
+      <i
+        class="mr-5 mb-5 text-danger fa fa-times"
+        title="Chưa xuất bản"
+        ng-if="!item.value"
+      ></i>
+    </div>
+    <!-- Template Featured -->
+    <div data-options="dxTemplate:{ name:'featuredCellTemplate' }">
+      <i
+        class="mr-5 mb-5 text-success fa fa-check"
+        title="Có"
+        ng-if="item.value"
+      ></i>
+      <i
+        class="mr-5 mb-5 text-danger fa fa-times"
+        title="Không"
+        ng-if="!item.value"
+      ></i>
+    </div>
+  </div>
+</div>
+
+<!-- Create-->
+<product-group-create
+  ng-if="$ctrl.create.visible === true"
+  visible="$ctrl.create.visible"
+  on-saved="$ctrl.onCreated()"
+  on-close="$ctrl.onCreateClosed()"
+></product-group-create>
+
+<!-- Edit-->
+<product-group-edit
+  ng-if="$ctrl.edit.visible === true"
+  id="$ctrl.edit.id"
+  visible="$ctrl.edit.visible"
+  on-saved="$ctrl.onEdited()"
+  on-close="$ctrl.onEditClosed()"
+></product-group-edit>
+
+<!-- Delete -->
+<product-group-delete
+  ng-if="$ctrl.delete.visible === true"
+  id="$ctrl.delete.id"
+  visible="$ctrl.delete.visible"
+  on-deleted="$ctrl.onDeleted()"
+  on-close="$ctrl.onClosedDelete()"
+></product-group-delete>

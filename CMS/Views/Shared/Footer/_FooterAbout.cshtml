@@ -1,0 +1,20 @@
+﻿@model CMS.Models.Info
+
+<div class="footer__about">
+    <!-- Logo -->
+    <div class="footer__logo">
+        <a href="/" title="@Html.Raw(Model.CompanyName)" class="footer__logo-link">
+            <img src="@Model.LogoWhite" title="@Html.Raw(Model.CompanyName)" alt="@Html.Raw(Model.CompanyName)" class="footer__logo-img">
+        </a>
+    </div>
+    <!-- Description -->
+    <div class="footer__text m-b-20">
+        @Html.Raw(Model.Description)
+    </div>
+    <!-- Info Company -->
+    <ul class="footer__address">
+        <li class="footer__address-item"><span>Địa chỉ:</span> @Html.Raw(Model.Address)</li>
+        <li class="footer__address-item"><span>Hotline: </span> <a href="tel:@Model.PhoneNumber" title="@Model.PhoneNumber">@Html.Raw(Model.PhoneNumber)</a> </li>
+        <li class="footer__address-item"><span>Email: </span> <a href="mailto:@Model.Email" title="@Model.Email">@Html.Raw(Model.Email)</a></li>
+    </ul>
+</div>

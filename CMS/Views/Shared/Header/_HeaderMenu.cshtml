@@ -1,0 +1,55 @@
+﻿<div class="header-menu">
+    <div class="container">
+        <div class="row col-12">
+            <nav>
+                <ul class="header__nav">
+                    <!-- Product Category -->
+                    <li class="header__nav-item pos-relative" style="background: #F57F17">
+                        @Html.Action("MenuProduct", "Layout")
+                    </li>
+                    <!-- Home -->
+                    <li class="header__nav-item pos-relative p-l-20">
+                        <a href="/" class="header__nav-link" title="@Html.Raw("Trang chủ")">
+                            @Html.Raw("Trang chủ")
+                        </a>
+                    </li>
+                    <!-- Chính sách bảo hành -->
+                    <li class="header__nav-item pos-relative">
+                        <a href="/warranty-policy" class="header__nav-link" title="@Html.Raw("Chính sách bảo hành")">
+                            @Html.Raw("Chính sách bảo hành")
+                        </a>
+                    </li>
+                    <li class="header__nav-item pos-relative" style="min-width: 400px; margin-top: 8px;">
+                        <form class="header__search-form">
+                            <div class="header__search-input">
+                                <input style="padding-left: 15px"
+                                       type="search"
+                                       placeholder="@Html.Raw("Nhập từ khóa tìm kiếm")"
+                                       ng-model="main.search"
+                                       ng-model-options='{ debounce: 500 }'
+                                       ng-change="main.onSuggest()"
+                                       ng-focus="main.checkSearching(true)"
+                                       ng-blur="main.checkSearching(false)"
+                                       ng-keydown="$event.keyCode === 13 && main.onSearch()">
+                                <ul class="search-box-ul" ng-show="main.searching===true && main.search.length > 0">
+                                    <li class="search-box-li" ng-repeat="product in main.suggestProducts">
+                                        <a href="/products/{{product.Slug}}-{{product.Id}}" title="{{product.Name}}">
+                                            <div class="align-content-start d-inline-flex">
+                                                <img ng-src="{{product.ThumbImage}}" title="{{product.Name}}" alt="{{product.Name}}" loading="lazy">
+                                                <div class="m-l-10" style="cursor: pointer">
+                                                    <div class="name">{{product.Name}}</div>
+                                                    <div class="price">{{product.Price | number:0}} <sup>₫</sup></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <button class="btn btn--submit btn--blue btn--weight " type="button" ng-click="main.onSearch()"><i class="icon-search"></i></button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

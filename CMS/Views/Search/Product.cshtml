@@ -1,0 +1,62 @@
+﻿@model ICollection<CMS.Models.ViewModels.SearchViewModel>
+
+<!-- :::::: Breadcrumb ::::::  -->
+<div class="page-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="page-breadcrumb__menu text-right">
+                    <li class="page-breadcrumb__nav"><a href="/" title="@Html.Raw("Trang chủ")">@Html.Raw("Trang chủ")</a></li>
+                    <li class="page-breadcrumb__nav active">@Html.Raw("Tìm kiếm")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- :::::: Main ::::::  -->
+<main id="main-container" class="main-container">
+    <div class="container">
+        <!-- Category -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-content section-content--border">
+                    <ul class="tablist tablist--style-black tablist--style-title tablist--style-seperator tablist--style-gap-70 nav">
+                        @{ int i = 0; }
+                        @foreach (var category in Model)
+                        {
+                            i++;
+                            string classActive = i == 1 ? "active" : "";
+                            string id = "category" + category.Id;
+                            <li>
+                                <a class="nav-link @classActive" data-toggle="tab" href="#@id" title="@Html.Raw(category.Name)">
+                                    @Html.Raw(category.Name) (@category.Products.Count)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="product-large-tab-box">
+                    <div class="tab-content tab-animate-zoom">
+                        @{ i = 0; }
+                        @foreach (var category in Model)
+                        {
+                            i++;
+                            string classActive = i == 1 ? "show active" : "";
+                            string id = "category" + category.Id;
+
+                            <div class="tab-pane @classActive" id="@id">
+                                <!-- Start Single Tab Content -->
+                                @foreach (var product in category.Products)
+                                {
+                                    @Html.Partial("~/Views/Products/_ProductCard5.cshtml", product)
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

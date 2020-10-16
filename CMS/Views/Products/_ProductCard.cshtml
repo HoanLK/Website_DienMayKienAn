@@ -1,0 +1,45 @@
+﻿@model CMS.Models.ViewModels.ProductLessViewModel
+
+<div class="product__box product__box--default product__box--border-hover swiper-slide text-center">
+    <div class="product__img-box">
+        <!-- Image -->
+        <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__img--link">
+            <img class="product__img" src="@Model.ThumbImage" alt="@Html.Raw(Model.Name)" title="@Html.Raw(Model.Name)" loading="lazy">
+        </a>
+        <!-- Button -->
+        <a ng-click="main.onOpenOrder(@Model.Id.ToString(), '@Model.Name.ToString()', '@Model.Image.ToString()', @Model.Price.ToString())"
+           class="btn btn--box btn--small btn--gray btn--uppercase btn--weight btn--hover-zoom product__upper-btn"
+           href="#modalAddCart"
+           title="@Html.Raw(Model.Name)"
+           data-toggle="modal">
+            @Html.Raw("Mua ngay")
+        </a>
+        <!-- Type -->
+        @switch (Model.Type)
+        {
+            case 1:
+                <span class="product__tag product__tag--new">@Html.Raw("Mới")</span>
+                break;
+            case 2:
+                <span class="product__tag product__tag--hot">@Html.Raw("Hot")</span>
+                break;
+            case 3:
+                double ratio = (Model.OldPrice - Model.Price) / Model.OldPrice * 100;
+                <span class="product__tag product__tag--discount">@ratio%</span>
+                break;
+            default:
+                break;
+        }
+    </div>
+    <!-- Price -->
+    <div class="product__price m-t-10">
+        @if (Model.Type == 3)
+        {
+            <span class="product__price-del">@Model.OldPrice.ToString("n0")<sup>₫</sup></span>
+        }
+        <span class="product__price-reg">@Model.Price.ToString("n0")<sup>₫</sup></span>
+    </div>
+    <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__link product__link--underline product__link--weight-light m-t-15">
+        @Html.Raw(Model.Name)
+    </a>
+</div>

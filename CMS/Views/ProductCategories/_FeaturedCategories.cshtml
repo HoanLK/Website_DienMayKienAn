@@ -1,0 +1,64 @@
+﻿@using CMS.Models.ViewModels
+@model ICollection<ProductCategoryViewModel>
+
+@foreach (var category in Model)
+{
+    <!-- ::::::  BANNER  ::::::  -->
+    if (category.Category.CountImageBanner > 0)
+    {
+        <div class="banner banner--1">
+            <div class="row">
+                @{
+                    int col = 12 / category.Category.CountImageBanner;
+                }
+
+                @foreach (var image in category.Category.ProductCategoryImages.Take(category.Category.CountImageBanner))
+                {
+                    <div class="col-@col">
+                        <div class="banner__box">
+                            <a href="/product-categories/@category.Category.Slug-@category.Category.Id" title="@category.Category.Name" class="banner__link">
+                                <img src="@image.Link" title="@category.Category.Name" alt="@category.Category.Name" loading="lazy" class="banner__img">
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- :::::: CATEGORY :::::: -->
+    <div class="product product--1 swiper-outside-arrow-hover">
+        <!-- CATEGORY & BRAND -->
+        <div class="row">
+            <div class="col-12">
+                <div class="section-content section-content--border d-md-flex align-items-center">
+                    <h5 class="section-content__title" style="font-size: 17px; margin-bottom: 0px; margin-right: 20px;">
+                        <a class="text-uppercase font-weight-bold" href="/product-categories/@category.Category.Slug-@category.Category.Id" title="@category.Category.Name">
+                            @category.Category.Name
+                        </a>
+                    </h5>
+                    <ul class="product__extra-nav nav">
+                        @foreach (var brand in category.Brands)
+                        {
+                            <li>
+                                <a class="nav-link" href="/product-categories/@category.Category.Slug-@category.Category.Id/@brand.Slug-@brand.Id" title="@brand.Name">
+                                    @brand.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- PRODUCTS -->
+        <div class="row">
+            <div class="col-12">
+                @foreach (var product in category.Products)
+                {
+                    @Html.Partial("~/Views/Products/_ProductCard5.cshtml", product)
+                }
+            </div>
+        </div>
+    </div>
+
+}

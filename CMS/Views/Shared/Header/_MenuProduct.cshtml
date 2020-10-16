@@ -1,0 +1,38 @@
+﻿@model ICollection<CMS.Models.ViewModels.ProductCategoryViewModel>
+
+<div class="header-menu-vertical d-lg-block d-none">
+    <h4 class="menu-title link--icon-left" style="background: #F57F17;padding-top: 20px;">
+        <i class="far fa-align-left"></i> @Html.Raw("Danh mục sản phẩm")
+    </h4>
+    <ul class="menu-content" style="z-index: 999; position:absolute;">
+        @foreach (var category in Model)
+        {
+            <li class="menu-item">
+                @if (category.Brands.Count > 0)
+                {
+                    <a href="/product-categories/@category.Category.Slug-@category.Category.Id" title="@Html.Raw(category.Category.Name)">
+                        <i class="@category.Category.Icon" style="width: 20px; text-align:center; margin-right: 5px;"></i>
+                        <span style="width: calc(100% - 24px)">@Html.Raw(category.Category.Name)</span>
+                        <i class="icon-chevron-right" style="width: 14px; height: 14px;"></i>
+                    </a>
+                    <ul class="sub-menu flex-wrap">
+                        @foreach (var brand in category.Brands)
+                        {
+                            <li>
+                                <a href="/product-categories/@category.Category.Slug-@category.Category.Id/@brand.Slug-@brand.Id" title="@Html.Raw(brand.Name)">
+                                    <span> <strong> @Html.Raw(brand.Name)</strong></span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <a href="/product-categories/@category.Category.Slug-@category.Category.Id" title="@Html.Raw(category.Category.Name)" style="justify-content: start">
+                        <i class="@category.Category.Icon" style="width: 20px; text-align:center; margin-right: 5px;"></i> @Html.Raw(category.Category.Name)
+                    </a>
+                }
+            </li>
+        }
+    </ul>
+</div>

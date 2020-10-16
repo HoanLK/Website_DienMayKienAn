@@ -1,0 +1,76 @@
+﻿<!-- ::::::  Main Container  ::::::  -->
+<main id="main-container" class="main-container m-t-30">
+    <div class="container">
+        <div class="row flex-column-reverse flex-lg-row">
+            <!-- MAIN MENU -->
+            <div class="col-lg-3 col-xl-3">
+            </div>
+
+            <!-- BANNER -->
+            <div class="col-lg-9 col-xl-9">
+                @Html.Action("Banner", "Layout")
+            </div>
+        </div>
+
+        <!-- FEATURED CATEGORIES -->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Action("FeaturedCategories", "ProductCategories")
+            </div>
+        </div>
+
+        <!-- ::::::  CMS  ::::::  -->
+        <div class="row">
+            <div class="col-12">
+                <div class="cms cms--1">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="cms__content">
+                                <div class="cms__icon">
+                                    <img class="cms__icon-img" src="~/Content/Frontend/img/icon/cms/icon1.png" title="@Html.Raw("Miễn phí vận chuyển cho đơn hàng trên 3 triệu đồng")" alt="@Html.Raw("Miễn phí vận chuyển cho đơn hàng trên 3 triệu đồng")">
+                                </div>
+                                <div class="cms__text">
+                                    <h6 class="cms__title">@Html.Raw("Miễn phí vận chuyển")</h6>
+                                    <span class="cms__des">@Html.Raw("Cho đơn hàng trên 3 triệu đồng")</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="cms__content">
+                                <div class="cms__icon">
+                                    <img class="cms__icon-img" src="~/Content/Frontend/img/icon/cms/icon2.png" title="@Html.Raw("Thanh toán dễ dàng, nhiều nhình thức thanh toán")" alt="@Html.Raw("Thanh toán dễ dàng, nhiều nhình thức thanh toán")">
+                                </div>
+                                <div class="cms__text">
+                                    <h6 class="cms__title">@Html.Raw("Thanh toán dễ dàng")</h6>
+                                    <span class="cms__des">@Html.Raw("Nhiều nhình thức thanh toán")</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="cms__content">
+                                <div class="cms__icon">
+                                    <img class="cms__icon-img" src="~/Content/Frontend/img/icon/cms/icon3.png" title="@Html.Raw("Tiết kiệm - Giá cả hợp lý")" alt="@Html.Raw("Tiết kiệm - Giá cả hợp lý")">
+                                </div>
+                                <div class="cms__text">
+                                    <h6 class="cms__title">@Html.Raw("Tiết kiệm")</h6>
+                                    <span class="cms__des">@Html.Raw("Giá cả hợp lý")</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="cms__content">
+                                <div class="cms__icon">
+                                    <img class="cms__icon-img" src="~/Content/Frontend/img/icon/cms/icon4.png" title="@Html.Raw("Hỗ trợ 24/7")" alt="@Html.Raw("Hỗ trợ 24/7")">
+                                </div>
+                                <div class="cms__text">
+                                    <h6 class="cms__title">@Html.Raw("Hỗ trợ 24/7")</h6>
+                                    <span class="cms__des">@Html.Raw("Tận tâm hỗ trợ 24/7")</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

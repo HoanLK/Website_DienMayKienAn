@@ -1,0 +1,29 @@
+﻿.datagrid-page {
+  height: calc(100vh - 125px);
+}
+/* BLOCK */
+.block-header {
+  padding: 5px 10px;
+}
+.block-content {
+  padding: 5px 0px 0px;
+}
+
+/* MEDIA IMAGE */
+.media-image-link {
+  color: #0073aa !important;
+  text-decoration: underline;
+  font-style: italic;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .content .block {
+    margin-bottom: 0px;
+  }
+}
+
+/* COKUMNS */
+.editable-column{
+  background-color: #93e5f028;
+}

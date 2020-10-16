@@ -1,0 +1,31 @@
+﻿<!-- :::::: BREADCRUMB ::::::-->
+<div class="page-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="page-breadcrumb__menu text-right">
+                    <li class="page-breadcrumb__nav"><a href="/">@Html.Raw("Trang chủ")</a></li>
+                    <li class="page-breadcrumb__nav active">@Html.Raw("404 Page")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- :::::: MAIN :::::: -->
+<main id="main-container" class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-content">
+                    <h5 class="section-content__title">@Html.Raw("Nội dung bạn tìm kiếm không tồn tại.")</h5>
+                </div>
+                <div class="page-not-found text-center m-t-40">
+                    <h4>@Html.Raw("Xin lỗi chúng tôi không tìm thấy nội dung bạn yêu cầu.")</h4>
+                    <p>@Html.Raw("Vui lòng lựa chọn hoặc tìm kiếm lại")</p>
+                    <a href="/">@Html.Raw("Quay lại trang chủ")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

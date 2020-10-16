@@ -1,0 +1,119 @@
+﻿@model CMS.Models.ViewModels.HeaderViewModel
+
+<!-- ::::::  Mobile Header  ::::::  -->
+<div class="header__mobile mobile-header--1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Header Mobile Top -->
+                <div class="row">
+                    <!-- Logo -->
+                    <div class="col-2">
+                        <div class="mobile-header__logo" style="padding-top: 8px;">
+                            <a href="/" title="@Html.Raw(Model.Info.CompanyName)" class="mobile-header__logo-link">
+                                <img style="height: 45px; max-width: unset !important" src="@Model.Info.Logo" alt="@Html.Raw(Model.Info.CompanyName)" title="@Html.Raw(Model.Info.CompanyName)" class="mobile-header__logo-img">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Search Box -->
+                    <div class="col-8" style="padding-right: 0px; padding-left: 5px;">
+                        <div class="header__mobile-middle header__top--style-1 p-tb-10">
+                            <form class="header__search-form">
+                                <div class="header__search-input header__search-input--mobile">
+                                    <input style="padding-left: 15px"
+                                           type="search"
+                                           placeholder="@Html.Raw("Nhập từ khóa tìm kiếm")"
+                                           ng-model="main.search"
+                                           ng-model-options='{ debounce: 500 }'
+                                           ng-change="main.onSuggest()"
+                                           ng-focus="main.checkSearching(true)"
+                                           ng-blur="main.checkSearching(false)"
+                                           ng-keydown="$event.keyCode === 13 && main.onSearch()">
+                                    <ul class="search-box-ul" ng-show="main.searching===true && main.search.length > 0">
+                                        <li class="search-box-li" ng-repeat="product in main.suggestProducts">
+                                            <a href="/products/{{product.Slug}}-{{product.Id}}" title="{{product.Name}}">
+                                                <div class="align-content-start d-inline-flex">
+                                                    <img ng-src="{{product.ThumbImage}}" title="{{product.Name}}" alt="{{product.Name}}" loading="lazy">
+                                                    <div class="m-l-10" style="cursor: pointer">
+                                                        <div class="name">{{product.Name}}</div>
+                                                        <div class="price">{{product.Price | number:0}} <sup>₫</sup></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn--submit btn--blue btn--weight " type="button" ng-click="main.onSearch()">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Menu Button -->
+                    <div class="col-2" style="padding-top: 20px;">
+                        <div class="header__wishlist-box">
+                            <a href="#offcanvas-mobile-menu" title="Menu" class="offcanvas-toggle m-l-20">
+                                <i class="icon-menu"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ::::::  Mobile-offcanvas Menu  ::::::  -->
+<div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
+    <button class="offcanvas__close offcanvas-close">&times;</button>
+    <div class="offcanvas-inner">
+        <div class="offcanvas-menu m-b-30">
+            <h4>Menu</h4>
+            <ul>
+                <!-- Trang chủ -->
+                <li>
+                    <a href="/" title="@Html.Raw("Trang chủ")">
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <!-- Sản phẩm -->
+                <li>
+                    <a href="#" title="@Html.Raw("Sản phẩm")"><span>@Html.Raw("Sản phẩm")</span></a>
+                    <ul class="sub-menu">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <li>
+                                <a href="/product-categories/@category.Slug-@category.Id" title="@Html.Raw(@category.Name)">
+                                    @Html.Raw(@category.Name)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <!-- Chính sách bảo hành -->
+                <li>
+                    <a href="/warranty-policy" title="@Html.Raw("Chính sách bảo hành")">
+                        @Html.Raw("Chính sách bảo hành")
+                    </a>
+                </li>
+            </ul>
+        </div>
+        @*<div class="offcanvas-social">
+                <span>@Html.Raw("Theo dõi")</span>
+                <ul>
+                    <li>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>*@
+    </div>
+</div>

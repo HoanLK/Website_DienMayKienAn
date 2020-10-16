@@ -1,0 +1,221 @@
+﻿@model CMS.Models.ViewModels.ProductViewModel
+
+<!-- :::::: Breadcrumb ::::::  -->
+<div class="page-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="page-breadcrumb__menu text-right">
+                    <li class="page-breadcrumb__nav"><a href="/" title="@Html.Raw("Trang chủ")">@Html.Raw("Trang chủ")</a></li>
+                    <li class="page-breadcrumb__nav"><a href="/product-categories/@Model.Product.Slug-@Model.Product.CategoryId" title="@Html.Raw(Model.Product.ProductCategory.Name)">@Html.Raw(Model.Product.ProductCategory.Name)</a></li>
+                    <li class="page-breadcrumb__nav active">@Html.Raw(Model.Product.Name)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- :::::: Main ::::::  -->
+<main id="main-container" class="main-container">
+    <div class="container">
+        <div class="row">
+            <!-- Product Details Gallery -->
+            <div class="col-12">
+                <div class="product-details">
+                    <div class="row">
+                        <!-- IMAGES -->
+                        <div class="col-md-6">
+                            <div class="product-gallery-box m-b-60">
+                                <!-- Image -->
+                                <div class="product-image--large overflow-hidden">
+                                    <img class="img-fluid" id="img-zoom" src="@Model.Product.Image" title="@Html.Raw(Model.Product.Name)" alt="@Html.Raw(Model.Product.Name)" loading="lazy">
+                                </div>
+                                <!-- Images -->
+                                @if (Model.Product.ProductImages.Count > 0)
+                                {
+                                    <div class="pos-relative m-t-30">
+                                        <div id="gallery-zoom" class="product-image--thumb product-image--thumb-horizontal overflow-hidden swiper-outside-arrow-hover m-lr-30">
+                                            <div class="swiper-wrapper">
+                                                @foreach (var image in Model.Product.ProductImages)
+                                                {
+                                                    <div class="swiper-slide">
+                                                        <a data-image="@image.Link" data-zoom-image="@image.Link" title="@Html.Raw(Model.Product.Name)">
+                                                            <img class="img-fluid" src="@image.Link" title="@Html.Raw(Model.Product.Name)" alt="@Html.Raw(Model.Product.Name)" loading="lazy">
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="swiper-buttons">
+                                            <!-- Arrows -->
+                                            <div class="swiper-button-next gallery__nav gallery__nav--next"><i class="fal fa-chevron-right"></i></div>
+                                            <div class="swiper-button-prev gallery__nav gallery__nav--prev"><i class="fal fa-chevron-left"></i></div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- THÔNG TIN KỸ THUẬT -->
+                        <div class="col-md-6">
+                            <div class="product-details-box">
+                                <!-- Product Name -->
+                                <h1 class="section-content__title">@Html.Raw(Model.Product.Name)</h1>
+                                <!-- Category -->
+                                <div class="text-reference m-b-10">
+                                    Danh mục:
+                                    <a href="/product-categories/@Model.Product.ProductCategory.Slug-@Model.Product.CategoryId" title="@Html.Raw(Model.Product.ProductCategory.Name)">
+                                        @Html.Raw(Model.Product.ProductCategory.Name)
+                                    </a>
+                                </div>
+                                <!-- Product Price -->
+                                <div class="product__price">
+                                    <!-- Prices -->
+                                    @if (Model.Prices.Count > 0)
+                                    {
+                                        <!-- Desktop -->
+                                        <div class="row d-sm-none d-none d-sm-none d-sm-block" style="margin-bottom: 20px">
+                                            <div class="col-12">
+                                                <div class="swiper-outside-arrow-fix pos-relative">
+                                                    <div class="product-counter-slider-4grid overflow-hidden margin-reset swiper-container-initialized swiper-container-horizontal">
+                                                        <div class="swiper-wrapper">
+                                                            @foreach (var price in Model.Prices.OrderBy(p => p.Code))
+                                                            {
+
+                                                                string checkedPrice = price.Id == Model.Product.Id ? "checked" : "";
+                                                                string backgroundColor = price.Id == Model.Product.Id ? "#fff1f1" : "#fff";
+
+                                                                <div class="product__box product__box--counter product__box--border-hover swiper-slide text-center"
+                                                                     style="cursor:pointer; background-color: @backgroundColor">
+                                                                    <a href="/products/@price.Slug-@price.Id" style="cursor: pointer;" title="@Html.Raw(price.Name)">
+                                                                        <div class="product__price m-t-10" style="cursor: pointer;">
+                                                                            <label for="ship-standard" style="cursor: pointer;">
+                                                                                <input type="radio" onclick="window.location='/products/@price.Slug-@price.Id@price.Slug-@price.Id';" class="shipping-select" style="cursor: pointer;" @checkedPrice><span>@Html.Raw(price.Code)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div title="@Html.Raw(price.Name)" class="product__link product__link--underline product__link--weight-light m-t-15" style="cursor: pointer;">
+                                                                            <b>@price.Price.ToString("n0")</b> <sup>₫</sup>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                        <div class="swiper-buttons">
+                                                            <!-- Add Arrows -->
+                                                            <div class="swiper-button-next default__nav default__nav--next"><i class="fal fa-chevron-right"></i></div>
+                                                            <div class="swiper-button-prev default__nav default__nav--prev"><i class="fal fa-chevron-left"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Mobile -->
+                                        <div class="row d-block d-sm-block d-md-none" style="margin-bottom: 20px">
+                                            <div class="col-12">
+                                                <div class="swiper-outside-arrow-fix pos-relative">
+                                                    <div class="product-counter-slider-4grid overflow-hidden margin-reset swiper-container-initialized swiper-container-horizontal">
+                                                        <div class="swiper-wrapper">
+                                                            @foreach (var price in Model.Prices.OrderByDescending(p => p.IsCurrent).ThenBy(p => p.Code))
+                                                            {
+
+                                                                string checkedPrice = price.Id == Model.Product.Id ? "checked" : "";
+                                                                string backgroundColor = price.Id == Model.Product.Id ? "#fff1f1" : "#fff";
+
+                                                                <div class="product__box product__box--counter product__box--border-hover swiper-slide text-center"
+                                                                     style="cursor:pointer; background-color: @backgroundColor">
+                                                                    <a href="/products/@price.Slug-@price.Id" style="cursor: pointer;" title="@Html.Raw(price.Name)">
+                                                                        <div class="product__price m-t-10" style="cursor: pointer;">
+                                                                            <label for="ship-standard" style="cursor: pointer;">
+                                                                                <input type="radio" onclick="window.location='/products/@price.Slug-@price.Id@price.Slug-@price.Id';" class="shipping-select" style="cursor: pointer;" @checkedPrice><span>@Html.Raw(price.Code)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div title="@Html.Raw(price.Name)" class="product__link product__link--underline product__link--weight-light m-t-15" style="cursor: pointer;">
+                                                                            <b>@price.Price.ToString("n0")</b> <sup>₫</sup>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                        <div class="swiper-buttons">
+                                                            <!-- Add Arrows -->
+                                                            <div class="swiper-button-next default__nav default__nav--next"><i class="fal fa-chevron-right"></i></div>
+                                                            <div class="swiper-button-prev default__nav default__nav--prev"><i class="fal fa-chevron-left"></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <span><b>@Html.Raw("Giá"): </b></span>
+                                    @if (Model.Product.Type == 3)
+                                    {
+                                        <span class="product__price-del">@Model.Product.OldPrice.ToString("n0") <sup>₫</sup></span>
+                                    }
+                                    <span class="product__price-reg">@Model.Product.Price.ToString("n0") <sup>₫</sup></span>
+                                </div>
+                                <!-- Tech Info -->
+                                @if (Model.TechInfos.Count > 0)
+                                {
+                                    <div class="product__desc m-t-25 m-b-30">
+                                        <div class="key-selling">
+                                            <div class="title_text text-uppercase m-b-10">
+                                                <b><u>@Html.Raw("Thông tin kỹ thuật")</u></b>
+                                            </div>
+                                            <div class="container">
+                                                <div id="tech-info-body">
+                                                    <div class="table-responsive-md">
+                                                        <table class="product-dis__list table table-bordered">
+                                                            <tbody>
+                                                                @foreach (var techInfo in Model.TechInfos)
+                                                                {
+                                                                    <tr>
+                                                                        <td class="product-dis__title text-left">@Html.Raw(techInfo.Field)</td>
+                                                                        <td class="product-dis__text text-left">@Html.Raw(techInfo.Value)</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ovlarticle" style="display: none;"></div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- Buy Button -->
+                                <div class="product-var p-t-30">
+                                    <div class="product-quantity product-var__item">
+                                        <a ng-click="main.onOpenOrder(@Model.Product.Id.ToString(), '@Model.Product.Name.ToString()', '@Model.Product.Image.ToString()', @Model.Product.Price.ToString())"
+                                           class="btn btn--box btn--small btn--blue btn--uppercase btn--weight m-l-20"
+                                           href="#modalAddCart"
+                                           data-toggle="modal"
+                                           data-dismiss="modal">
+                                            @Html.Raw("Mua ngay")
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relate Products -->
+            <div class="col-12">
+                @Html.Action("RelateProducts", "Products", new { productId = Model.Product.Id, categoryId = Model.Product.CategoryId, brandId = Model.Product.BrandId })
+            </div>
+
+            <!-- Content -->
+
+            @if (!string.IsNullOrEmpty(Model.Product.Content))
+            {
+                <div class="col-12 html-content">
+                    <div class="container">
+                        <div id="content-body">
+                            @Html.Raw(Model.Product.Content)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>

@@ -1,0 +1,142 @@
+﻿@model CMS.Models.ViewModels.ProductCategoryViewModel
+
+<!-- ::::::  Breadcrumb  ::::::  -->
+<div class="page-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="page-breadcrumb__menu text-right">
+                    <li class="page-breadcrumb__nav"><a href="/" title="@Html.Raw("Trang chủ")">@Html.Raw("Trang chủ")</a></li>
+                    <li class="page-breadcrumb__nav active">@Html.Raw(Model.Category.Name)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ::::::  Main  ::::::  -->
+<main id="main-container" class="main-container">
+    <div class="container">
+        <div class="row">
+            <!-- ::::::  Banner  ::::::  -->
+            <div class="col-md-12 m-b-20">
+                @if (Model.Category.CountImageBanner > 0)
+                {
+                    <div class="banner">
+                        <div class="row">
+                            @{
+                                int col = 12 / Model.Category.CountImageBanner;
+                            }
+
+                            @foreach (var image in Model.Category.ProductCategoryImages.Take(Model.Category.CountImageBanner))
+                            {
+                                <div class="col-@col">
+                                    <div class="banner__box">
+                                        <a href="/product-categories/@Model.Category.Slug-@Model.Category.Id" title="@Model.Category.Name" class="banner__link">
+                                            <img src="@image.Link" title="@Model.Category.Name" alt="@Model.Category.Name" loading="lazy" class="banner__img">
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- ::::::  LEFT SIDEBAR  ::::::  -->
+            @if (Model.Brands.Count > 0)
+            {
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <div class="sidebar__widget">
+                            <div class="sidebar__box">
+                                <h5 class="sidebar__title">@Html.Raw("Nhãn hiệu")</h5>
+                            </div>
+                            <ul class="sidebar__menu-collapse">
+                                <li class="sidebar__menu-collapse-list">
+                                    <div class="accordion">
+                                        <a href="/product-categories/@Model.Category.Slug-@Model.Category.Id" title="@Html.Raw(Model.Category.Name)" class="accordion__title" style="margin-bottom:10px">
+                                            <b>@Html.Raw("Tất cả")</b>
+                                        </a>
+                                        @foreach (var brand in Model.Brands)
+                                        {
+                                            <a href="/product-categories/@Model.Category.Slug-@Model.Category.Id/@brand.Slug-@brand.Id" title="@Html.Raw(brand.Name)" class="accordion__title m-b-10" style="margin-bottom:10px">
+                                                @Html.Raw(brand.Name)
+                                                <img src="@brand.Image" title="@Html.Raw(brand.Name)" alt="@Html.Raw(brand.Name)" style="height: 35px;" />
+                                            </a>
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Content -->
+            <div class="col-md-9">
+                <!-- ::::::  Search  ::::::  -->
+                @*<div class="sort-box">
+                        <div class="sort-box__left">
+                            <div class="sort-box__tab">
+                                    <ul class="sort-box__tab-list nav">
+                                        <li><a class="sort-nav-link active" data-toggle="tab" href="#sort-grid"><i class="icon-grid"></i>  </a></li>
+                                        <li><a class="sort-nav-link" data-toggle="tab" href="#sort-list"><i class="icon-list"></i></a></li>
+                                    </ul>
+                                </div>
+                            <span><b>TÌM KIẾM</b></span>
+                        </div>
+                        <div class="sort-box__right">
+                            <span>Theo hãng:</span>
+                            <div class="sort-box__option">
+                                <label class="select-sort__arrow">
+                                    <select name="select-sort" class="select-sort">
+                                        @foreach (var brand in Model.Brands)
+                                        {
+                                            <option value="@brand.Id">@brand.Name</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sort-box__right">
+                            <span>Theo giá:</span>
+                            <div class="sort-box__option">
+                                <label class="select-sort__arrow">
+                                    <select name="select-sort" class="select-sort">
+                                        <option value="1">Từ 1 đến 2 triệu</option>
+                                        <option value="2">Từ 3 đến 4 triệu</option>
+                                        <option value="3">Từ 6 đến 7 triệu</option>
+                                        <option value="4">Từ 8 đến 9 triệu</option>
+                                        <option value="5">Từ 9 đến 10 triệu</option>
+                                        <option value="6">Trên 10 triệu</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- Products -->
+                <div class="product-tab-area">
+                    <div class="tab-content ">
+                        @if (Model.Products.Count > 0)
+                        {
+                            <div class="tab-pane show active clearfix" id="sort-grid">
+                                @foreach (var product in Model.Products)
+                                {
+                                    @Html.Partial("~/Views/Products/_ProductCard4.cshtml", product)
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <i>Xin lỗi chưa có sản phẩm nào!</i>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

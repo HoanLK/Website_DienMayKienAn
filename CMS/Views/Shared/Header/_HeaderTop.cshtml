@@ -1,0 +1,26 @@
+﻿@model CMS.Models.Info
+
+<div class="header__top header__top--style-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="contact_cms text-center">
+                    <div class="header__logo">
+                        <a href="/" title="@Html.Raw(Model.CompanyName)" class="header__logo-link">
+                            <img src="@Model.Logo" title="@Html.Raw(Model.CompanyName)" alt="@Html.Raw(Model.CompanyName)" class="header__logo-img">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 text-center">
+                <p class="font-weight-bold" style="font-size: 1.5em;">
+                    @Html.Raw("Trung Tâm Bảo Hành - Phân Phối Sản Phẩm Chính Hãng")
+                </p>
+                <h1 class="font-weight-bold" style="font-size: 3em; text-transform: uppercase; color: #e71e40;">
+                    @Html.Raw("ĐIỆN MÁY KIẾN AN")
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>

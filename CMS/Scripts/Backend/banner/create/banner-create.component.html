@@ -1,0 +1,166 @@
+﻿<form ng-submit="$ctrl.onSave($event)" dx-validation-group="{validation}">
+  <div class="block">
+    <!-- HEARDER -->
+    <div
+      class="block-header block-header-default"
+      style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);"
+    >
+      <h3 class="block-title font-weight-bold" style="color: #2facb2;">
+        THÊM CHỨNG CHỈ
+      </h3>
+      <div class="block-options">
+        <!-- Save -->
+        <div dx-button="$ctrl.controls.btnSave"></div>
+        <!-- Close -->
+        <div dx-button="$ctrl.controls.btnClose"></div>
+        <!-- Full Screen -->
+        <button
+          type="button"
+          class="btn-block-option"
+          data-toggle="block-option"
+          data-action="fullscreen_toggle"
+          title="Phóng to / Thu nhỏ"
+        >
+          <i class="si si-size-fullscreen"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ::: CONTENT ::: -->
+    <div class="block-content pt-20">
+      <div class="row">
+        <!-- MAIN -->
+        <div class="col-md-9" style="padding-right: 0px;">
+          <div class="row">
+            <!-- Main Title -->
+            <div class="col-md-6 form-group">
+              <label class="col-12">Tiêu đề chính</label>
+              <div class="col-md-12">
+                <div dx-text-box="$ctrl.controls.tbMainTitle"></div>
+              </div>
+            </div>
+            <!-- Sub Title -->
+            <div class="col-md-6 form-group">
+              <label class="col-12">Tiêu đề phụ</label>
+              <div class="col-md-12">
+                <div dx-text-box="$ctrl.controls.tbSubTitle"></div>
+              </div>
+            </div>
+            <!-- Text Button -->
+            <div class="col-md-6 form-group">
+              <label class="col-12">Text button</label>
+              <div class="col-md-12">
+                <div dx-text-box="$ctrl.controls.tbTextButton"></div>
+              </div>
+            </div>
+            <!-- Link Button -->
+            <div class="col-md-6 form-group">
+              <label class="col-12">Link Button</label>
+              <div class="col-md-12">
+                <div dx-text-box="$ctrl.controls.tbLink"></div>
+              </div>
+            </div>
+
+            <!--Validation Summary-->
+            <div class="col-md-12">
+              <div
+                dx-validation-summary="{validation}"
+                style="padding: 20px;"
+              ></div>
+            </div>
+
+            <!-- Image -->
+            <div class="col-md-12 form-group mb-30">
+              <label class="col-12">Ảnh <i>(690x300)</i></label>
+              <div class="col-md-12">
+                <div dx-text-box="$ctrl.controls.tbImage"></div>
+                <div
+                  style="margin-top: 15px;"
+                  ng-if="$ctrl.commonService.isNullOrEmpty(data.Image)"
+                >
+                  <a
+                    ng-click="$ctrl.chooseImage()"
+                    style="
+                      color: #0073aa;
+                      text-decoration: underline;
+                      font-style: italic;
+                      cursor: pointer;
+                    "
+                  >
+                    Chọn ảnh
+                  </a>
+                </div>
+                <div ng-if="!$ctrl.commonService.isNullOrEmpty(data.Image)">
+                  <div style="text-align: center;">
+                    <img
+                      style="cursor: pointer; margin-top: 10px;"
+                      ng-click="$ctrl.chooseImage()"
+                      class="img-fluid"
+                      ng-src="{{ data.Image }}"
+                      alt="Ảnh"
+                      title="Chọn hình ảnh"
+                    />
+                  </div>
+                  <div style="margin-top: 10px;">
+                    <i>Nhấn vào ảnh để sửa hoặc cập nhật</i>
+                  </div>
+                  <div style="margin-top: 10px;">
+                    <a
+                      ng-click="$ctrl.clearImage()"
+                      style="
+                        color: #0073aa;
+                        text-decoration: underline;
+                        font-style: italic;
+                        cursor: pointer;
+                      "
+                    >
+                      Xóa ảnh
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nội dung -->
+            <div class="col-md-12 form-group mb-20">
+              <label class="col-12">Nội dung</label>
+              <div class="col-md-12">
+                <div dx-text-area="$ctrl.controls.taContent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-md-3" style="padding-left: 0px;">
+          <div class="row">
+            <!-- Published -->
+            <div class="col-md-12 form-group mb-30">
+              <label class="col-12">Trạng thái</label>
+              <div class="col-md-12">
+                <div dx-select-box="$ctrl.controls.slbStatus"></div>
+              </div>
+            </div>
+            <!-- Sort Order -->
+            <div class="col-md-12 form-group mb-30">
+              <label class="col-12">Thứ tự</label>
+              <div class="col-md-12">
+                <div dx-number-box="$ctrl.controls.nbSortOrder"></div>
+              </div>
+            </div>
+            <!-- Note -->
+            <div class="col-md-12 form-group mb-30">
+              <label class="col-12">Ghi chú</label>
+              <div class="col-md-12">
+                <div dx-text-area="$ctrl.controls.taNote"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- LoadPanel -->
+<div class="loadpanel" dx-load-panel="$ctrl.loadPanel"></div>

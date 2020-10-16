@@ -1,0 +1,95 @@
+﻿<div class="modal fade" id="modalAddCart" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">@Html.Raw("Đặt hàng") {{main.ProductName}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <!-- IMAGE -->
+                            <div class="modal__product-img">
+                                <img class="img-fluid" ng-src="{{main.ProductImage}}" alt="{{main.ProductName}}" title="{{main.ProductName}}" loading="lazy">
+                            </div>
+                            <!-- NAME -->
+                            <div class="modal__product-title text-center" style="font-size: 20px; font-weight: bold; margin-top: 20px">{{main.ProductName}}</div>
+                            <!-- PRICE -->
+                            <div class="modal__product-price m-tb-15 text-danger text-center" style="font-weight: bold; font-size: 2em">
+                                {{main.Order.Price | number:0}} <sup>₫</sup>
+                            </div>
+                            <!-- QUANTITY -->
+                            <div class="product-var p-t-30">
+                                <div class="product-quantity product-var__item">
+                                    <div class="product-quantity-box">
+                                        <span class="float-left" style=" font-weight: 500; margin: 10px 20px;">@Html.Raw("Số lượng đặt")</span>
+                                        <div class="quantity" style="height: 50px">
+                                            <input type="number" min="1" max="999" step="1" value="1" ng-model="main.Order.Quantity" ng-change="main.calculateAmount()" required>
+                                            <div class="quantity-nav">
+                                                <div class="quantity-button" ng-click="main.increaseQuantity()">
+                                                    <i class="icon-chevron-up"></i>
+                                                </div>
+                                                <div class="quantity-button" ng-click="main.reductionQuantity()">
+                                                    <i class="icon-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 modal__border">
+                            <div class="font-weight-bold">THÔNG TIN NGƯỜI ĐẶT HÀNG</div>
+                            <hr />
+                            <form>
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="male" name="gender" class="custom-control-input" value="true" ng-model="main.Order.Gender">
+                                        <label class="custom-control-label" for="male">Anh</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="female" name="gender" class="custom-control-input" value="false" ng-model="main.Order.Gender">
+                                        <label class="custom-control-label" for="female">Chị</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" placeholder="@Html.Raw("Họ và tên của bạn (*)")" ng-model="main.Order.Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="@Html.Raw("Số điện thoại liên hệ (*)")" ng-model="main.Order.PhoneNumber" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="@Html.Raw("Email của bạn")" ng-model="main.Order.Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="address" class="form-control" placeholder="@Html.Raw("Địa chỉ nhận hàng (*)")" ng-model="main.Order.Address" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="note" class="form-control" rows="5" placeholder="@Html.Raw("Nội dung ghi chú")" ng-model="main.Order.Note"></textarea>
+                                </div>
+
+                                <button ng-click="main.onOrder()" type="submit" class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">
+                                    <i class="far fa-paper-plane"></i>
+                                    @Html.Raw("Thực hiện đặt hàng")
+                                </button>
+                            </form>
+
+                            <h4 class="grand-total m-tb-25">
+                                <b>@Html.Raw("Tổng Tiền") &nbsp;&nbsp;&nbsp; <span>{{main.Order.Amount | number:0}} <sup>₫</sup></span></b>
+                            </h4>
+                            <div style="margin-top: 10px;">
+                                <i style="font-size: 0.8em;">
+                                    @Html.Raw("Bằng cách đặt hàng bạn đã đồng ý với điều khoản sử dụng và chính sách đổi trả")
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

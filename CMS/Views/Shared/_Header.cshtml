@@ -1,0 +1,18 @@
+﻿@model CMS.Models.ViewModels.HeaderViewModel
+
+<header>
+    <!-- ::::::  DESKTOP HEADER ::::::  -->
+    <div class="header header--1">
+        <!-- Header Top -->
+        @Html.Partial("~/Views/Shared/Header/_HeaderTop.cshtml", Model.Info)
+
+        <!-- Header Menu -->
+        @Html.Partial("~/Views/Shared/Header/_HeaderMenu.cshtml")
+    </div>
+
+    <!-- ::::::  MOBILE HEADER  ::::::  -->
+    @Html.Partial("~/Views/Shared/Header/_MobileHeader.cshtml", Model)
+
+    <!-- Overlay -->
+    <div class="offcanvas-overlay"></div>
+</header>

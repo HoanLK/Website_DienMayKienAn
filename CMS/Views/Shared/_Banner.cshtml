@@ -1,0 +1,18 @@
+﻿@model ICollection<CMS.Models.ViewModels.BannerLessViewModel>
+
+<div class="hero hero-slider hero---2">
+    <div class="swiper-wrapper">
+        @foreach (var banner in Model)
+        {
+            <div class="hero-img hero-img--2 swiper-slide" style="background-size:contain; background-image: url(@banner.Image);"></div>
+        }
+
+        <!-- Pagination -->
+        <div class="swiper-pagination hero__dots hero__dots--2"></div>
+        <!-- Arrows -->
+        <div class="swiper-buttons">
+            <div class="swiper-button-next hero__nav hero__nav--next"><i class="far fa-chevron-right"></i></div>
+            <div class="swiper-button-prev hero__nav hero__nav--prev"><i class="far fa-chevron-left"></i></div>
+        </div>
+    </div>
+</div>

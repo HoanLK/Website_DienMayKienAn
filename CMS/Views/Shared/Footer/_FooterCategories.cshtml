@@ -1,0 +1,13 @@
+﻿@model ICollection<CMS.Models.ViewModels.ProductCategoryLessViewModel>
+
+<h4 class="footer__nav-title">Sản phẩm</h4>
+<ul class="footer__nav">
+    @foreach (var category in Model)
+    {
+        <li class="footer__list">
+            <a href="/product-categories/@category.Slug-@category.Id" title="@category.Name" class="footer__link">
+                @Html.Raw(category.Name)
+            </a>
+        </li>
+    }
+</ul>

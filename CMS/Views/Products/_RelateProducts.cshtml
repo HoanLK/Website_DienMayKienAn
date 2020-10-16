@@ -1,0 +1,30 @@
+﻿@model ICollection<CMS.Models.ViewModels.ProductLessViewModel>
+
+<div class="product swiper-outside-arrow-hover">
+    <div class="row">
+        <div class="col-12">
+            <div class="section-content section-content--border d-flex align-items-center justify-content-between">
+                <h5 class="section-content__title">@Html.Raw("SẢN PHẨM LIÊN QUAN:")</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="swiper-outside-arrow-fix pos-relative">
+                <div class="product-default-slider-5grid overflow-hidden">
+                    <div class="swiper-wrapper">
+                        @foreach (var product in Model)
+                        {
+                            @Html.Partial("~/Views/Products/_ProductCard.cshtml", product)
+                        }
+                    </div>
+                    <div class="swiper-buttons">
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next default__nav default__nav--next"><i class="fal fa-chevron-right"></i></div>
+                        <div class="swiper-button-prev default__nav default__nav--prev"><i class="fal fa-chevron-left"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@using CMS.Models
+@model Info
+
+<meta name="geo.region" content="VN" />
+
+<!-- Apple Meta Tags -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width = 320, initial-scale = 2.3, user-scalable = no" />
+<meta name="viewport" content="width = device-width" />
+<meta name="viewport" content="initial-scale = 1.0" />
+<meta name="viewport" content="initial-scale = 2.3, user-scalable = no" />
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no" />
+
+<meta name="author" content="@Html.Raw(Model.Author)" />
+<meta name="designer" content="@Html.Raw(Model.Designer)" />
+<meta name="copyright" content="@Html.Raw(Model.Copyright)" />
+<meta name="reply-to" content="@Html.Raw(Model.ReplyTo)" />
+<meta name="owner" content="@Html.Raw(Model.Owner)" />
+
+<meta name="application-name" content="@Html.Raw(Model.SiteName)" />
+
+<meta name="fb:page_id" content="@Html.Raw(Model.IdFacebook)" />
+<meta name="og:site_name" content="@Html.Raw(Model.SiteName)" />
+
+<meta name="og:email" content="@Html.Raw(Model.Email)" />
+<meta name="og:phone_number" content="@Html.Raw(Model.PhoneNumber)" />
+<meta name="og:fax_number" content="@Html.Raw(Model.Fax)" />
+<meta name="og:latitude" content="@Model.Latitude" />
+<meta name="og:longitude" content="@Model.Longitude" />
+<meta name="og:street-address" content="@Html.Raw(Model.StreetAddress)" />
+<meta name="og:locality" content="@Html.Raw(Model.Locality)" />
+<meta name="og:region" content="@Html.Raw(Model.Region)" />
+
+<meta name="google-site-verification" content="@Model.GoogleSiteVerification" />
+
+<meta name="geo.placename" content="@Html.Raw(Model.StreetAddress)" />
+<meta name="geo.position" content="@Html.Raw(Model.Address)" />
+<meta name="ICBM" content="@Model.Latitude,@Model.Longitude" /> <!-- 21.123123, 105.345345345 -->
+
+<link rel="apple-touch-icon" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="57x57" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="60x60" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="72x72" hhref="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="76x76" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="114x114" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="120x120" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="144x144" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="152x152" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon" sizes="180x180" href="@Model.AppleIcon" />
+<link rel="apple-touch-startup-image" href="@Model.AppleIcon" />
+<link rel="apple-touch-icon-precomposed" href="@Model.AppleIcon">
+
+<!-- Declare that your website is family-safe -->
+<meta name="target" content="all" />
+<meta name="audience" content="all" />
+<meta name="coverage" content="Worldwide" />
+<meta name="distribution" content="Global" />
+<meta name="rating" content="safe for kids" />
+
+<meta name="og:locale" content="vi_VN" />
+<meta name="og:type" content="website" />
+
+<meta name="language" content="vi" />
+<meta name="robots" content="archive,follow,imageindex,index,odp,snippet,translate" />
+<!--<meta name="revised" content="Sunday, July 18th, 2010, 5:15 pm" /> --><!-- Thời gian sửa đổi -->
+<!-- Favicon Icon -->
+<link rel="icon" type="image/png" href="@Model.Logo" />
+<link rel="shortcut icon" type="image/png" href="@Model.Logo" />
