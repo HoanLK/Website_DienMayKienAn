@@ -257,7 +257,7 @@ export default class ProductDatagridController {
         customLoad: null,
         customSave: null,
         enabled: true,
-        savingTimeout: 500,
+        savingTimeout: 100,
         storageKey: "datagridProducts",
         type: "localStorage",
       },
