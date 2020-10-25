@@ -53,6 +53,7 @@ namespace CMS.Controllers
             ViewBag.url = $"{info.URL}/products/{slug}-{id}";
             ViewBag.image = info.URL + product.Image;
 
+            // Prices
             var prices = await _db.Products.AsNoTracking()
                                            .Where(p => p.GroupId == product.GroupId && p.GroupId != null && p.Published == true)
                                            .Select(p => new PriceProductViewModel()
@@ -65,17 +66,34 @@ namespace CMS.Controllers
                                                Slug = p.Slug
                                            })
                                            .ToListAsync();
+            // Tech Infos
             List<FieldValueViewModel> techInfos = new List<FieldValueViewModel>();
             if (!string.IsNullOrEmpty(product.Feature) && product.Feature != "[]")
             {
                 techInfos = JsonConvert.DeserializeObject<List<FieldValueViewModel>>(product.Feature);
             }
 
+            // Competitor Prices
+            List<CompetitorPriceViewModel> competitorPrices = new List<CompetitorPriceViewModel>();
+            if (!string.IsNullOrEmpty(product.Prices) && product.Prices != "[]")
+            {
+                competitorPrices = JsonConvert.DeserializeObject<List<CompetitorPriceViewModel>>(product.Prices);
+
+                foreach (var price in competitorPrices)
+                {
+                    var brand = await _db.Brands.FindAsync(price.Id);
+                    price.Logo = brand.Image;
+                    price.Name = brand.Name;
+                    price.Price = (!string.IsNullOrEmpty(price.Price.ToString())) ? price.Price : 0;
+                }
+            }
+
             ProductViewModel model = new ProductViewModel()
             {
                 Product = product,
                 Prices = prices,
-                TechInfos = techInfos
+                TechInfos = techInfos,
+                CompetitorPrices = competitorPrices
             };
 
             return View(model);

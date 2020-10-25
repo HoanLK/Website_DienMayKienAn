@@ -1,6 +1,6 @@
 ﻿angular
   .module("frontendApp", [])
-  .controller("MainController", function($timeout, $http, $window) {
+  .controller("MainController", function ($timeout, $http, $window) {
     var self = this;
 
     self.ProductName = "";
@@ -111,21 +111,8 @@
         };
         $http.post("/api/OrderAPI", temp).then(
           (res) => {
-            alert("Gửi phiếu đặt hàng thành công");
             $("#modalAddCart").modal("toggle");
-
-            self.Order = {
-              ProductId: null,
-              Price: 0,
-              Quantity: 1,
-              Amount: 0,
-              Gender: "true",
-              Name: null,
-              PhoneNumber: null,
-              Email: null,
-              Address: null,
-              Note: null,
-            };
+            $("#modalBuySuccess").modal("toggle");
           },
           (res) => {
             alert("Gửi phiếu đặt hàng thất bại");

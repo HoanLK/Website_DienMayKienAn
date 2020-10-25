@@ -5,24 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="89bbb01472a14098a854b971fe141bd5" Name="Diagram1" ZoomLevel="99">
-        <EntityTypeShape EntityType="BDSHDModel.AspNetRole" Width="1.5" PointX="9.75" PointY="4.625" />
-        <EntityTypeShape EntityType="BDSHDModel.AspNetUserClaim" Width="1.5" PointX="14.25" PointY="3.125" />
-        <EntityTypeShape EntityType="BDSHDModel.AspNetUserLogin" Width="1.5" PointX="14.25" PointY="5.875" />
-        <EntityTypeShape EntityType="BDSHDModel.AspNetUser" Width="1.5" PointX="12" PointY="3.25" />
-        <EntityTypeShape EntityType="BDSHDModel.Banner" Width="1.5" PointX="0.75" PointY="13.875" />
+        <EntityTypeShape EntityType="BDSHDModel.AspNetRole" Width="1.5" PointX="9.75" PointY="4.5" />
+        <EntityTypeShape EntityType="BDSHDModel.AspNetUserClaim" Width="1.5" PointX="14.25" PointY="5.5" />
+        <EntityTypeShape EntityType="BDSHDModel.AspNetUserLogin" Width="1.5" PointX="14.25" PointY="3" />
+        <EntityTypeShape EntityType="BDSHDModel.AspNetUser" Width="1.5" PointX="12" PointY="3.125" />
+        <EntityTypeShape EntityType="BDSHDModel.Banner" Width="1.5" PointX="0.75" PointY="13.75" />
         <EntityTypeShape EntityType="BDSHDModel.Brand" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="BDSHDModel.Certificate" Width="1.5" PointX="2.75" PointY="14.875" />
-        <EntityTypeShape EntityType="BDSHDModel.ComponentImage" Width="1.5" PointX="14.25" PointY="11.375" />
-        <EntityTypeShape EntityType="BDSHDModel.Component" Width="1.5" PointX="12" PointY="9.25" />
-        <EntityTypeShape EntityType="BDSHDModel.Info" Width="1.5" PointX="4.75" PointY="14.875" />
-        <EntityTypeShape EntityType="BDSHDModel.Module" Width="1.5" PointX="9.75" PointY="11" />
-        <EntityTypeShape EntityType="BDSHDModel.Order" Width="1.5" PointX="7.5" PointY="5.5" />
-        <EntityTypeShape EntityType="BDSHDModel.PostCategory" Width="1.5" PointX="6.75" PointY="14.875" />
-        <EntityTypeShape EntityType="BDSHDModel.Post" Width="1.5" PointX="8.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BDSHDModel.Certificate" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BDSHDModel.ComponentImage" Width="1.5" PointX="14.25" PointY="11.25" />
+        <EntityTypeShape EntityType="BDSHDModel.Component" Width="1.5" PointX="12" PointY="9.125" />
+        <EntityTypeShape EntityType="BDSHDModel.Info" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BDSHDModel.Module" Width="1.5" PointX="9.75" PointY="10.875" />
+        <EntityTypeShape EntityType="BDSHDModel.Order" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="BDSHDModel.PostCategory" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BDSHDModel.Post" Width="1.5" PointX="8.75" PointY="14.75" />
         <EntityTypeShape EntityType="BDSHDModel.ProductCategory" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="BDSHDModel.ProductCategoryImage" Width="1.5" PointX="3" PointY="6.25" />
-        <EntityTypeShape EntityType="BDSHDModel.ProductGroup" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="BDSHDModel.ProductImage" Width="1.5" PointX="7.5" PointY="10.5" />
+        <EntityTypeShape EntityType="BDSHDModel.ProductCategoryImage" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="BDSHDModel.ProductGroup" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="BDSHDModel.ProductImage" Width="1.5" PointX="7.5" PointY="5.5" />
         <EntityTypeShape EntityType="BDSHDModel.Product" Width="1.5" PointX="5.25" PointY="4.875" />
         <AssociationConnector Association="BDSHDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="BDSHDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />

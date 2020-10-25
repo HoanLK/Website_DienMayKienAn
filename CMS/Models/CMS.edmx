@@ -380,6 +380,7 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="OldPrice" Type="float" Nullable="false" />
+          <Property Name="Prices" Type="nvarchar(max)" />
           <Property Name="EN_Name" Type="nvarchar" MaxLength="1024" />
           <Property Name="EN_Description" Type="nvarchar(max)" />
           <Property Name="EN_Content" Type="nvarchar(max)" />
@@ -1098,6 +1099,7 @@
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="OldPrice" Type="Double" Nullable="false" />
+          <Property Name="Prices" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EN_Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="EN_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EN_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1659,6 +1661,7 @@
                 <ScalarProperty Name="EN_Content" ColumnName="EN_Content" />
                 <ScalarProperty Name="EN_Description" ColumnName="EN_Description" />
                 <ScalarProperty Name="EN_Name" ColumnName="EN_Name" />
+                <ScalarProperty Name="Prices" ColumnName="Prices" />
                 <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

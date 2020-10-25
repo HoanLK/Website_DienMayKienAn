@@ -85,8 +85,8 @@ export default class ProductService {
   }
 
   // CLONE
-  clone(data) {
-    return this.$http.post(API_URL, data);
+  clone(id) {
+    return this.$http.get("/api/ProductCloneAPI/" + id);
   }
 
   //--- REDIRECT ---

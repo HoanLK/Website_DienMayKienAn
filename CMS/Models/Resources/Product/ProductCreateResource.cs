@@ -16,6 +16,7 @@ namespace CMS.Models.Resources.Product
         public int Type { get; set; }
         public double Price { get; set; }
         public double OldPrice { get; set; }
+        public string Prices { get; set; }
         public string EN_Name { get; set; }
         public string EN_Description { get; set; }
         public string EN_Content { get; set; }

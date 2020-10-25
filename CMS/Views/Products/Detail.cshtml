@@ -55,7 +55,7 @@
                                 }
                             </div>
                         </div>
-                        <!-- THÔNG TIN KỸ THUẬT -->
+                        <!-- BASIC INFO -->
                         <div class="col-md-6">
                             <div class="product-details-box">
                                 <!-- Product Name -->
@@ -78,7 +78,7 @@
                                                 <div class="swiper-outside-arrow-fix pos-relative">
                                                     <div class="product-counter-slider-4grid overflow-hidden margin-reset swiper-container-initialized swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
-                                                            @foreach (var price in Model.Prices.OrderBy(p => p.Code))
+                                                            @foreach (var price in Model.Prices.OrderBy(p => p.Price))
                                                             {
 
                                                                 string checkedPrice = price.Id == Model.Product.Id ? "checked" : "";
@@ -114,7 +114,7 @@
                                                 <div class="swiper-outside-arrow-fix pos-relative">
                                                     <div class="product-counter-slider-4grid overflow-hidden margin-reset swiper-container-initialized swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
-                                                            @foreach (var price in Model.Prices.OrderByDescending(p => p.IsCurrent).ThenBy(p => p.Code))
+                                                            @foreach (var price in Model.Prices.OrderByDescending(p => p.IsCurrent).ThenBy(p => p.Price))
                                                             {
 
                                                                 string checkedPrice = price.Id == Model.Product.Id ? "checked" : "";
@@ -146,30 +146,53 @@
                                         </div>
                                     }
                                     <span><b>@Html.Raw("Giá"): </b></span>
-                                    @if (Model.Product.Type == 3)
-                                    {
-                                        <span class="product__price-del">@Model.Product.OldPrice.ToString("n0") <sup>₫</sup></span>
-                                    }
-                                    <span class="product__price-reg">@Model.Product.Price.ToString("n0") <sup>₫</sup></span>
+
+                                    <div class="row">
+                                        <div class="col-md-5 m-b-20">
+                                            @if (Model.Product.Type == 3)
+                                            {
+                                                <span class="product__price-del">@Model.Product.OldPrice.ToString("n0") <sup>₫</sup></span>
+                                            }
+                                            <span class="product__price-reg" style="font-size: 25px">@Model.Product.Price.ToString("n0") <sup>₫</sup></span>
+                                        </div>
+                                        <div class="col-md-7 m-b-20">
+                                            <a ng-click="main.onOpenOrder('@Model.Product.Id', '@Model.Product.Name', '@Model.Product.Image', '@Model.Product.Price')"
+                                               class="btn btn--box btn--small btn--blue btn--uppercase btn--weight"
+                                               href="#modalAddCart"
+                                               data-toggle="modal"
+                                               data-dismiss="modal">
+                                                @Html.Raw("Mua ngay")
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Tech Info -->
-                                @if (Model.TechInfos.Count > 0)
+                                <!-- Competitor Prices -->
+                                @if (Model.CompetitorPrices.Count > 0)
                                 {
                                     <div class="product__desc m-t-25 m-b-30">
                                         <div class="key-selling">
                                             <div class="title_text text-uppercase m-b-10">
-                                                <b><u>@Html.Raw("Thông tin kỹ thuật")</u></b>
+                                                <b><u>@Html.Raw("So sánh giá")</u></b>
                                             </div>
                                             <div class="container">
                                                 <div id="tech-info-body">
                                                     <div class="table-responsive-md">
-                                                        <table class="product-dis__list table table-bordered">
+                                                        <table class="product-dis__list" style="border: none">
                                                             <tbody>
-                                                                @foreach (var techInfo in Model.TechInfos)
+                                                                @foreach (var price in Model.CompetitorPrices)
                                                                 {
                                                                     <tr>
-                                                                        <td class="product-dis__title text-left">@Html.Raw(techInfo.Field)</td>
-                                                                        <td class="product-dis__text text-left">@Html.Raw(techInfo.Value)</td>
+                                                                        <td class="product-dis__title text-left" style="padding: 10px">
+                                                                            <img src="@price.Logo" title="@price.Name" alt="@price.Name" style="width: 100px" />
+                                                                        </td>
+                                                                        <td class="product-dis__text text-left" style="padding: 10px;font-weight: 500;color: red;">
+                                                                            @price.Price.ToString("n0") <sup>₫</sup>
+                                                                        </td>
+                                                                        <td class="product-dis__text text-left" style="padding: 10px">
+                                                                            <a href="@price.Link" rel="nofollow" title="@price.Name" target="_blank" style="color: #007bff; text-decoration: none; background-color: transparent;">
+                                                                                <i class="far fa-search"></i> Xem
+                                                                            </a>
+                                                                        </td>
                                                                     </tr>
                                                                 }
                                                             </tbody>
@@ -181,18 +204,6 @@
                                         </div>
                                     </div>
                                 }
-                                <!-- Buy Button -->
-                                <div class="product-var p-t-30">
-                                    <div class="product-quantity product-var__item">
-                                        <a ng-click="main.onOpenOrder(@Model.Product.Id.ToString(), '@Model.Product.Name.ToString()', '@Model.Product.Image.ToString()', @Model.Product.Price.ToString())"
-                                           class="btn btn--box btn--small btn--blue btn--uppercase btn--weight m-l-20"
-                                           href="#modalAddCart"
-                                           data-toggle="modal"
-                                           data-dismiss="modal">
-                                            @Html.Raw("Mua ngay")
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -200,22 +211,87 @@
             </div>
 
             <!-- Relate Products -->
-            <div class="col-12">
+            <div class="col-12 m-b-20">
                 @Html.Action("RelateProducts", "Products", new { productId = Model.Product.Id, categoryId = Model.Product.CategoryId, brandId = Model.Product.BrandId })
             </div>
 
-            <!-- Content -->
-
-            @if (!string.IsNullOrEmpty(Model.Product.Content))
-            {
-                <div class="col-12 html-content">
-                    <div class="container">
-                        <div id="content-body">
-                            @Html.Raw(Model.Product.Content)
+            <!-- Tech Info -->
+            <div class="col-md-4 d-block d-sm-none">
+                @if (Model.TechInfos.Count > 0)
+                {
+                    <div class="product__desc m-t-25 m-b-30">
+                        <div class="key-selling">
+                            <div class="title_text text-uppercase m-b-10" style="font-size: 1.2em;color: #e94c62">
+                                <b><u>@Html.Raw("Thông số kỹ thuật")</u></b>
+                            </div>
+                            <div id="tech-info-body-1" style="overflow:hidden">
+                                <div class="table-responsive-md">
+                                    <table class="product-dis__list table table-striped" style="border: none">
+                                        <tbody>
+                                            @foreach (var techInfo in Model.TechInfos)
+                                            {
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <span class="product-dis__title">@Html.Raw(techInfo.Field)</span>
+                                                        :
+                                                        <span class="product-dis__text">@Html.Raw(techInfo.Value)</span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="ovlarticle" style="display: none;"></div>
                         </div>
                     </div>
+                }
+            </div>
+
+            <!-- Content -->
+            <div class="col-md-8 html-content">
+                <div class="container">
+                    <div id="content-body">
+                        @if (!string.IsNullOrEmpty(Model.Product.Content))
+                        {
+                            @Html.Raw(Model.Product.Content)
+                        }
+                    </div>
                 </div>
-            }
+            </div>
+
+            <!-- Tech Info -->
+            <div class="col-md-4 d-none d-sm-block">
+                @if (Model.TechInfos.Count > 0)
+                {
+                    <div class="product__desc m-t-25 m-b-30">
+                        <div class="key-selling">
+                            <div class="title_text text-uppercase m-b-10" style="font-size: 1.2em;color: #e94c62">
+                                <b><u>@Html.Raw("Thông số kỹ thuật")</u></b>
+                            </div>
+                            <div id="tech-info-body-2" style="overflow:hidden">
+                                <div class="table-responsive-md">
+                                    <table class="product-dis__list table table-striped" style="border: none">
+                                        <tbody>
+                                            @foreach (var techInfo in Model.TechInfos)
+                                            {
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <span class="product-dis__title">@Html.Raw(techInfo.Field)</span>
+                                                        :
+                                                        <span class="product-dis__text">@Html.Raw(techInfo.Value)</span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="ovlarticle" style="display: none;"></div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </main>

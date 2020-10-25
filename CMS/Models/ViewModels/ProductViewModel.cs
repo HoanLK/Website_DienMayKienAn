@@ -7,5 +7,6 @@ namespace CMS.Models.ViewModels
         public Product Product { get; set; }
         public List<PriceProductViewModel> Prices { get; set; }
         public List<FieldValueViewModel> TechInfos { get; set; }
+        public List<CompetitorPriceViewModel> CompetitorPrices { get; set; }
     }
 }

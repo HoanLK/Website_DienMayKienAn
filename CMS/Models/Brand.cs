@@ -11,7 +11,7 @@ namespace CMS.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Brand
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace CMS.Models
         {
             this.Products = new HashSet<Product>();
         }
-
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Slug { get; set; }
@@ -38,7 +38,7 @@ namespace CMS.Models
         public string ModifyUser { get; set; }
         public Nullable<System.DateTime> ModifyTime { get; set; }
         public double Views { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
     }

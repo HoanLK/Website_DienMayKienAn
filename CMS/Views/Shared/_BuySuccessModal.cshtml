@@ -1,0 +1,52 @@
+﻿<div class="modal fade" id="modalBuySuccess" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-xl" role="document" style="min-width: unset !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">@Html.Raw("ĐẶT HÀNG THÀNH CÔNG")</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="modal__product-img">
+                                        <img class="img-fluid" ng-src="{{main.ProductImage}}" alt="{{main.ProductName}}" title="{{main.ProductName}}" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="modal__product-title" style="font-size: 1.2em;margin-bottom: 10px;color: #e71e40;">
+                                        <b>{{main.ProductName}}</b>
+                                    </span>
+                                    <ul class="modal__product-info ">
+                                        <li>Đơn giá:<span> {{main.Order.Price | number:0}} <sup>₫</sup></span></li>
+                                        <li>Số lượng:<span>{{main.Order.Quantity | number:0}}</span></li>
+                                        <li>Thành tiền:<span style="font-size: 1.1em; font-weight: 500">{{main.Order.Amount | number:0}} <sup>₫</sup></span></li>
+                                    </ul>
+                                    <hr />
+                                    <ul class="modal__product-shipping-info m-tb-15">
+                                        <li>Họ và tên: <span>{{main.Order.Name}}</span></li>
+                                        <li>Điện thoại: <span>{{main.Order.PhoneNumber}}</span></li>
+                                        <li>Email: <span>{{main.Order.Email}}</span></li>
+                                        <li>Địa chỉ: <span>{{main.Order.Address}}</span></li>
+                                        <li>Ghi chú: <span>{{main.Order.Note}}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="button" data-dismiss="modal" class="btn btn--box btn--large btn--blue btn--uppercase btn--weight">
+                                        <i class="far fa-check"></i>
+                                        @Html.Raw("OK")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

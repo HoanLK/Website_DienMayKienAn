@@ -3,11 +3,14 @@
 <div class="product__box product__box--default product__box--border-hover swiper-slide text-center">
     <div class="product__img-box">
         <!-- Image -->
-        <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__img--link">
-            <img class="product__img" src="@Model.ThumbImage" alt="@Html.Raw(Model.Name)" title="@Html.Raw(Model.Name)" loading="lazy">
-        </a>
+        @if (!string.IsNullOrEmpty(Model.ThumbImage))
+        {
+            <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__img--link">
+                <img class="product__img" src="@Model.ThumbImage" alt="@Html.Raw(Model.Name)" title="@Html.Raw(Model.Name)" loading="lazy">
+            </a>
+        }
         <!-- Button -->
-        <a ng-click="main.onOpenOrder(@Model.Id.ToString(), '@Model.Name.ToString()', '@Model.Image.ToString()', @Model.Price.ToString())"
+        <a ng-click="main.onOpenOrder('@Model.Id', '@Model.Name', '@Model.Image', '@Model.Price')"
            class="btn btn--box btn--small btn--gray btn--uppercase btn--weight btn--hover-zoom product__upper-btn"
            href="#modalAddCart"
            title="@Html.Raw(Model.Name)"
@@ -39,7 +42,9 @@
         }
         <span class="product__price-reg">@Model.Price.ToString("n0")<sup>₫</sup></span>
     </div>
-    <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__link product__link--underline product__link--weight-light m-t-15">
-        @Html.Raw(Model.Name)
-    </a>
+    <h4>
+        <a href="/products/@Model.Slug-@Model.Id" title="@Html.Raw(Model.Name)" class="product__link product__link--underline product__link--weight-light m-t-15">
+            @Html.Raw(Model.Name)
+        </a>
+    </h4>
 </div>

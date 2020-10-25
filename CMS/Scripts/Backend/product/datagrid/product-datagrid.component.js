@@ -257,7 +257,7 @@ export default class ProductDatagridController {
         customLoad: null,
         customSave: null,
         enabled: true,
-        savingTimeout: 100,
+        savingTimeout: 50,
         storageKey: "datagridProducts",
         type: "localStorage",
       },
@@ -380,18 +380,10 @@ export default class ProductDatagridController {
   }
 
   // CLONE
-  onClone(data) {
-    let newData = angular.copy(data);
-    delete newData.Id;
-    delete newData.CreateTime;
-    delete newData.ProductGroup;
-    newData.Name += " Copy";
-    newData.Price = 0;
-    newData.Images = [];
-
+  onClone(id) {
     this.loadPanelInstance.show();
 
-    this.productService.clone(newData).then(
+    this.productService.clone(id).then(
       (res) => {
         toastr.success("Nhân đôi sản phẩm", "Thành công");
         this.gridInstance.getDataSource().reload();

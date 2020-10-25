@@ -21,7 +21,7 @@ export default class BrandService {
 
     // Brands
     this.brands = [];
-    this.gets(["Id", "Name"])
+    this.gets(["Id", "Name", "Image", "Note"])
       .load()
       .then(
         (res) => {

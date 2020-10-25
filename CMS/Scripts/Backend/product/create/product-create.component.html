@@ -7,7 +7,7 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       "
     >
-      <h3 class="block-title font-weight-bold" style="color: #2facb2;">
+      <h3 class="block-title font-weight-bold" style="color: #2facb2">
         THÊM SẢN PHẨM
       </h3>
       <div class="block-options">
@@ -33,9 +33,9 @@
       <div class="row">
         <!-- ::: NAME ::: -->
         <!-- Name -->
-        <div class="col-md-5 form-group" style="padding-right: 0px;">
+        <div class="col-md-5 form-group" style="padding-right: 0px">
           <label class="col-12">
-            Tên sản phẩm <span style="color: red;">*</span>
+            Tên sản phẩm <span style="color: red">*</span>
           </label>
           <div class="col-md-12">
             <div
@@ -47,7 +47,7 @@
         <!-- Nhóm -->
         <div
           class="col-md-4 form-group"
-          style="padding-left: 0px; padding-right: 0px;"
+          style="padding-left: 0px; padding-right: 0px"
         >
           <label class="col-12">Nhóm sản phẩm</label>
           <div class="col-md-12">
@@ -56,23 +56,15 @@
         </div>
         <!-- Code -->
         <div class="col-md-3 form-group">
-          <label class="col-12">
-            Mã sản phẩm
-          </label>
+          <label class="col-12"> Mã sản phẩm </label>
           <div class="col-md-12">
-            <div
-              dx-text-box="$ctrl.controls.tbCode"
-              dx-validator="$ctrl.validators.code"
-            ></div>
+            <div dx-text-box="$ctrl.controls.tbCode"></div>
           </div>
         </div>
 
         <!--Validation Summary-->
         <div class="col-md-12">
-          <div
-            dx-validation-summary="{validation}"
-            style="padding: 20px;"
-          ></div>
+          <div dx-validation-summary="{validation}" style="padding: 20px"></div>
         </div>
 
         <!-- ::: MAIN ::: -->
@@ -84,56 +76,66 @@
               <div dx-text-area="$ctrl.controls.taDescription"></div>
             </div>
           </div>
+
           <!-- Feature -->
           <div class="col-md-12 form-group mb-30">
             <label class="col-12">Thông tin kỹ thuật</label>
             <div class="col-md-12">
               <div dx-data-grid="$ctrl.techInfoDatagrid"></div>
             </div>
-            <!-- Content -->
-            <div class="col-md-12 form-group mb-30 mt-30">
-              <label class="col-12">Nội dung</label>
-              <div class="col-md-12">
-                <textarea ck-editor ng-model="data.Content"></textarea>
-              </div>
-            </div>
+          </div>
 
-            <!-- Ảnh -->
-            <div class="col-md-12 form-group mb-30">
-              <label class="col-12">Ảnh</label>
-              <div class="col-md-4">
-                <div dx-button="$ctrl.controls.btnAddMedia"></div>
-              </div>
-              <div class="col-md-12">
-                <div class="row">
-                  <div
-                    class="col-md-4"
-                    ng-repeat="link in data.Images track by $index"
-                  >
-                    <div ng-if="!$ctrl.commonService.isNullOrEmpty(link)">
-                      <div style="text-align: center;">
-                        <img
-                          style="cursor: pointer; margin-top: 10px;"
-                          ng-click="$ctrl.updateMedia($index)"
-                          class="img-fluid"
-                          ng-src="{{ link }}"
-                          alt="Ảnh"
-                          title="Chọn ảnh"
-                        />
-                      </div>
-                      <div style="margin-top: 10px;">
-                        <i style="font-size: 0.85em;"
-                          >Nhấn vào để sửa hoặc cập nhật</i
-                        >
-                      </div>
-                      <div style="margin-top: 10px;">
-                        <a
-                          ng-click="$ctrl.removeMedia($index)"
-                          class="media-image-link"
-                        >
-                          Xóa ảnh
-                        </a>
-                      </div>
+          <!-- Prices -->
+          <div class="col-md-12 form-group mb-30">
+            <label class="col-12">So sánh giá</label>
+            <div class="col-md-12">
+              <div dx-data-grid="$ctrl.pricesDatagrid"></div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="col-md-12 form-group mb-30">
+            <label class="col-12">Nội dung</label>
+            <div class="col-md-12">
+              <textarea ck-editor ng-model="data.Content"></textarea>
+            </div>
+          </div>
+
+          <!-- Ảnh -->
+          <div class="col-md-12 form-group mb-30">
+            <label class="col-12">Ảnh</label>
+            <div class="col-md-4">
+              <div dx-button="$ctrl.controls.btnAddMedia"></div>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  ng-repeat="link in data.Images track by $index"
+                >
+                  <div ng-if="!$ctrl.commonService.isNullOrEmpty(link)">
+                    <div style="text-align: center">
+                      <img
+                        style="cursor: pointer; margin-top: 10px"
+                        ng-click="$ctrl.updateMedia($index)"
+                        class="img-fluid"
+                        ng-src="{{ link }}"
+                        alt="Ảnh"
+                        title="Chọn ảnh"
+                      />
+                    </div>
+                    <div style="margin-top: 10px">
+                      <i style="font-size: 0.85em"
+                        >Nhấn vào để sửa hoặc cập nhật</i
+                      >
+                    </div>
+                    <div style="margin-top: 10px">
+                      <a
+                        ng-click="$ctrl.removeMedia($index)"
+                        class="media-image-link"
+                      >
+                        Xóa ảnh
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -147,16 +149,26 @@
           <div class="row">
             <!-- Danh mục -->
             <div class="col-md-12 form-group mb-30">
-              <label class="col-12">Danh mục</label>
+              <label class="col-12">
+                Danh mục <span style="color: red">*</span>
+              </label>
               <div class="col-md-12">
-                <div dx-select-box="$ctrl.controls.slbCategory"></div>
+                <div
+                  dx-select-box="$ctrl.controls.slbCategory"
+                  dx-validator="$ctrl.validators.category"
+                ></div>
               </div>
             </div>
             <!-- Nhãn hiệu -->
             <div class="col-md-12 form-group mb-30">
-              <label class="col-12">Nhãn hiệu</label>
+              <label class="col-12">
+                Nhãn hiệu <span style="color: red">*</span>
+              </label>
               <div class="col-md-12">
-                <div dx-select-box="$ctrl.controls.slbBrand"></div>
+                <div
+                  dx-select-box="$ctrl.controls.slbBrand"
+                  dx-validator="$ctrl.validators.brand"
+                ></div>
               </div>
             </div>
             <!-- Loại -->
@@ -168,9 +180,14 @@
             </div>
             <!-- Giá -->
             <div class="col-md-12 form-group mb-30">
-              <label class="col-12">Giá</label>
+              <label class="col-12">
+                Giá <span style="color: red">*</span>
+              </label>
               <div class="col-md-12">
-                <div dx-number-box="$ctrl.controls.nbPrice"></div>
+                <div
+                  dx-number-box="$ctrl.controls.nbPrice"
+                  dx-validator="$ctrl.validators.price"
+                ></div>
               </div>
             </div>
             <!-- Giá cũ -->
@@ -207,20 +224,25 @@
               <div class="col-md-12">
                 <div dx-text-box="$ctrl.controls.tbImage"></div>
                 <div
-                  style="margin-top: 15px;"
+                  style="margin-top: 15px"
                   ng-if="$ctrl.commonService.isNullOrEmpty(data.Image)"
                 >
                   <a
                     ng-click="$ctrl.chooseImage()"
-                    style="color: #0073aa;text-decoration: underline;font-style: italic;cursor: pointer;"
+                    style="
+                      color: #0073aa;
+                      text-decoration: underline;
+                      font-style: italic;
+                      cursor: pointer;
+                    "
                   >
                     Chọn ảnh đại diện
                   </a>
                 </div>
                 <div ng-if="!$ctrl.commonService.isNullOrEmpty(data.Image)">
-                  <div style="text-align: center;">
+                  <div style="text-align: center">
                     <img
-                      style="cursor: pointer; margin-top: 10px;"
+                      style="cursor: pointer; margin-top: 10px"
                       ng-click="$ctrl.chooseImage()"
                       class="img-fluid"
                       ng-src="{{ data.Image }}"
@@ -228,13 +250,18 @@
                       title="Chọn hình ảnh"
                     />
                   </div>
-                  <div style="margin-top: 10px;">
+                  <div style="margin-top: 10px">
                     <i>Nhấn vào ảnh để sửa hoặc cập nhật</i>
                   </div>
-                  <div style="margin-top: 10px;">
+                  <div style="margin-top: 10px">
                     <a
                       ng-click="$ctrl.clearImage()"
-                      style="color: #0073aa;text-decoration: underline;font-style: italic;cursor: pointer;"
+                      style="
+                        color: #0073aa;
+                        text-decoration: underline;
+                        font-style: italic;
+                        cursor: pointer;
+                      "
                     >
                       Xóa ảnh đại diện
                     </a>
@@ -248,12 +275,17 @@
               <div class="col-md-12">
                 <div dx-text-box="$ctrl.controls.tbImageBanner"></div>
                 <div
-                  style="margin-top: 15px;"
+                  style="margin-top: 15px"
                   ng-if="$ctrl.commonService.isNullOrEmpty(data.ImageBanner)"
                 >
                   <a
                     ng-click="$ctrl.chooseImageBanner()"
-                    style="color: #0073aa;text-decoration: underline;font-style: italic;cursor: pointer;"
+                    style="
+                      color: #0073aa;
+                      text-decoration: underline;
+                      font-style: italic;
+                      cursor: pointer;
+                    "
                   >
                     Chọn ảnh banner
                   </a>
@@ -261,9 +293,9 @@
                 <div
                   ng-if="!$ctrl.commonService.isNullOrEmpty(data.ImageBanner)"
                 >
-                  <div style="text-align: center;">
+                  <div style="text-align: center">
                     <img
-                      style="cursor: pointer; margin-top: 10px;"
+                      style="cursor: pointer; margin-top: 10px"
                       ng-click="$ctrl.chooseImageBanner()"
                       class="img-fluid"
                       ng-src="{{ data.ImageBanner }}"
@@ -271,13 +303,18 @@
                       title="Chọn hình ảnh"
                     />
                   </div>
-                  <div style="margin-top: 10px;">
+                  <div style="margin-top: 10px">
                     <i>Nhấn vào ảnh để sửa hoặc cập nhật</i>
                   </div>
-                  <div style="margin-top: 10px;">
+                  <div style="margin-top: 10px">
                     <a
                       ng-click="$ctrl.clearImageBanner()"
-                      style="color: #0073aa;text-decoration: underline;font-style: italic;cursor: pointer;"
+                      style="
+                        color: #0073aa;
+                        text-decoration: underline;
+                        font-style: italic;
+                        cursor: pointer;
+                      "
                     >
                       Xóa ảnh banner
                     </a>
@@ -297,7 +334,10 @@
                 <!-- HEARDER -->
                 <div
                   class="block-header block-header-default bg-corporate"
-                  style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);"
+                  style="
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+                      0 1px 2px rgba(0, 0, 0, 0.24);
+                  "
                 >
                   <h3 class="block-title font-weight-bold text-white">SEO</h3>
                   <div class="block-options">
@@ -326,7 +366,7 @@
                 <div class="block-content pt-20">
                   <div class="row">
                     <!--Main-->
-                    <div class="col-md-12" style="padding-right: 0px;">
+                    <div class="col-md-12" style="padding-right: 0px">
                       <div class="row">
                         <!-- Title SEO -->
                         <div class="col-md-12 form-group mb-30">
