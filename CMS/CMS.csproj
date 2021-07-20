@@ -7973,9 +7973,7 @@
     <Content Include="Content\Frontend\sass\page\_product-single.scss" />
     <Content Include="Content\Frontend\sass\page\_shop.scss" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
-    <Content Include="Scripts\dist\main.js.map" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
-    <Content Include="Scripts\dist\main.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -8116,6 +8114,7 @@
     <Folder Include="Content\Images\images\Posts\" />
     <Folder Include="Content\Images\images\Products\MayGiat-SayQuanAo\NA-FD11AR1BV\" />
     <Folder Include="Content\Images\_thumbs\Files\" />
+    <Folder Include="Scripts\dist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\web.config" />
@@ -8249,8 +8248,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>npm run build</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
